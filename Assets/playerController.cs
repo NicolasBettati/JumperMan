@@ -46,3 +46,4 @@ public class playerController : MonoBehaviour
         pivot.localRotation = Quaternion.Euler(pitch,roll,0f);
     }
 }
+//skibid toilet
