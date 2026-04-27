@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -15,6 +16,11 @@ public class playerController : MonoBehaviour
     public float sensitivityY = 1;
     float mouseY = 0;
 
+    private float pitch = 0f;
+    private float roll = 0f;
+    public float max = 90f;
+    public float min = -90f;
+
     void Start(){
         rb = GetComponent<Rigidbody>();
         gc = GetComponentInChildren<groundCheck>();
@@ -28,9 +34,15 @@ public class playerController : MonoBehaviour
             Debug.Log("Jump Pressed");
             rb.AddForce(new Vector3(0f, 5f * jumpMult, 0f));
         }
+
+        //! GET THE AXIS
         mouseX = Input.GetAxis("Mouse X");
-        pivot.transform.Rotate(new Vector3(0f, 1f, 0f)*mouseX*sensitivityX*Time.deltaTime);
-        mouseY = Input.GetAxis("Mouse Y");
-        pivot.transform.Rotate(new Vector3(-Math.Clamp(mouseY*sensitivityY*Time.deltaTime,-13f,13f), 0f, 0f));
+        mouseY = Input.GetAxis("Mouse Y") * sensitivityY * Time.deltaTime;
+        //! PROCESS THE AXIS
+        pitch -= -1*mouseY;
+        pitch = Math.Clamp(pitch, min, max);
+        roll -= -1*mouseX;
+        //! SET THE ROTATION
+        pivot.localRotation = Quaternion.Euler(pitch,roll,0f);
     }
 }

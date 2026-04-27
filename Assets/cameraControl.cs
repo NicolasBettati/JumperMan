@@ -12,6 +12,5 @@ public class cameraControl : MonoBehaviour
     {
         transform.localPosition = Vector3.Lerp(transform.position, objective.transform.position, followSpeed*Time.deltaTime);
         transform.LookAt(player);
-
     }
 }
