@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objective: {fileID: 1638367806}
-  followSpeed: 10
+  followSpeed: 15
   player: {fileID: 2016740956}
 --- !u!1 &410087039
 GameObject:
@@ -866,6 +866,8 @@ MonoBehaviour:
   pivot: {fileID: 460703166}
   sensitivityX: 400
   sensitivityY: 100
+  max: 20
+  min: -13
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
